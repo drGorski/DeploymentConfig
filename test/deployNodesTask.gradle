@@ -1,0 +1,21 @@
+task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
+    directory "./build/nodes"
+    
+    node {
+            name "O=Windmill Jacob,L=Gdansk,C=PL"
+            p2pAddress "jacob.gdynia.amw.pl:8080"
+            rpcSettings {
+                address "jacob.gdynia.amw.pl:1001"
+                adminAddress "jacob.gdynia.amw.pl:1002"
+                standAloneBroker False
+                useSsl False
+                ssl {
+                    keyStorePath "<!--rpcSettings.ssl.keyStorePath-->"
+                    keyStorePassword "<!--rpcSettings.ssl.keyStorePassword-->"
+                }
+            }
+            devMode False
+            rpcUsers { username=jacob, password=letmein, permissions=[ ALL ] }
+            sshdPort 1337
+    }
+}
