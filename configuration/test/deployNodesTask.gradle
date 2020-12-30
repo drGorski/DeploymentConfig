@@ -18,4 +18,97 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             rpcUsers { username=jacob, password=letmein, permissions=[ ALL ] }
             sshdPort 1337
     }
+    node {
+            name "O=Windmill Lucy,L=Plock,C=PL"
+            p2pAddress "lucy.gdynia.amw.pl:8080"
+            rpcSettings {
+                address "lucy.gdynia.amw.pl:1001"
+                adminAddress "lucy.gdynia.amw.pl:1002"
+                standAloneBroker False
+                useSsl False
+                ssl {
+                    keyStorePath "<!--rpcSettings.ssl.keyStorePath-->"
+                    keyStorePassword "<!--rpcSettings.ssl.keyStorePassword-->"
+                }
+            }
+            devMode False
+            rpcUsers { username=lucy, password=letmein, permissions=[ ALL ] }
+            sshdPort 1337
+    }
+    node {
+            name "O=Windmill Thomas,L=Gdynia,C=PL"
+            p2pAddress "thomas.gdynia.amw.pl:8080"
+            rpcSettings {
+                address "thomas.gdynia.amw.pl:1001"
+                adminAddress "thomas.gdynia.amw.pl:1002"
+                standAloneBroker False
+                useSsl False
+                ssl {
+                    keyStorePath "<!--rpcSettings.ssl.keyStorePath-->"
+                    keyStorePassword "<!--rpcSettings.ssl.keyStorePassword-->"
+                }
+            }
+            devMode False
+            rpcUsers { username=thomas, password=letmein, permissions=[ ALL ] }
+            sshdPort 1337
+    }
+    node {
+            name "O=Oracle,L=Sopot,C=PL"
+            p2pAddress "oracle.gdynia.amw.pl:8080"
+            rpcSettings {
+                address "oracle.gdynia.amw.pl:1001"
+                adminAddress "oracle.gdynia.amw.pl:1002"
+                standAloneBroker False
+                useSsl False
+                ssl {
+                    keyStorePath "<!--rpcSettings.ssl.keyStorePath-->"
+                    keyStorePassword "<!--rpcSettings.ssl.keyStorePassword-->"
+                }
+            }
+            devMode False
+            rpcUsers { username=oracle, password=letmein, permissions=[ ALL ] }
+            sshdPort <!--sshd.port-->
+    }
+    node {
+            name "O=Network Map,L=Gdynia,C=PL"
+            p2pAddress "cordaNetworkMap.gdynia.amw.pl:8080"
+            rpcSettings {
+                address "cordaNetworkMap.gdynia.amw.pl:1001"
+                adminAddress "cordaNetworkMap.gdynia.amw.pl:1002"
+                standAloneBroker False
+                useSsl False
+                ssl {
+                    keyStorePath "<!--rpcSettings.ssl.keyStorePath-->"
+                    keyStorePassword "<!--rpcSettings.ssl.keyStorePassword-->"
+                }
+            }
+            devMode False
+            rpcUsers { username=networkAdmin, password=letmein, permissions=[ ALL ] }
+            sshdPort 1337
+    }
+    node {
+            name "O=Notary,L=Warsaw,C=PL"
+            p2pAddress "notary.gdynia.amw.pl:8080"
+            rpcSettings {
+                address "notary.gdynia.amw.pl:1001"
+                adminAddress "notary.gdynia.amw.pl:1002"
+                standAloneBroker False
+                useSsl False
+                ssl {
+                    keyStorePath "<!--rpcSettings.ssl.keyStorePath-->"
+                    keyStorePassword "<!--rpcSettings.ssl.keyStorePassword-->"
+                }
+            }
+            devMode False
+            rpcUsers { username=notary, password=letmein, permissions=[ ALL ] }
+            sshdPort 1337
+            notary = [
+                validating : True,
+                serviceLegalName : "<!--notary.serviceLegalName-->"
+            ]
+    }
+
+
+
+
 }
